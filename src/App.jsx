@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef, forwardRef } from 'react'
 import { formatter } from './util/formatter'
 
 import Header from './components/Header'
@@ -10,10 +10,19 @@ import Result from './components/Result'
 function App() {
 	const [calculate, setCalculate] = useState(false)
 	const [newClass, setNewClass] = useState(undefined)
+	const [taxNormal, setTaxNormal] = useState(0)
+	const [taxLinear, setTaxLinear] = useState(0)
+	const [taxLump, setTaxLump] = useState(0)
 
 	function handleClick(toCalculate, toClass) {
 		setCalculate(toCalculate)
 		setNewClass(toClass)
+		const allInputs = document.querySelectorAll('Input')
+		const income = parseFloat(allInputs[0].value) - parseFloat(allInputs[1].value)
+		const lumpTaxNumber = parseFloat(allInputs[2].value) / 100
+		setTaxNormal(income * 0.12)
+		setTaxLinear(income * 0.19)
+		setTaxLump(income * lumpTaxNumber)
 	}
 
 	let resultsDiv = ''
@@ -22,9 +31,9 @@ function App() {
 		resultsDiv = (
 			<Box radius='radius-bottom'>
 				<div className='box__wrapper--results'>
-					<Result taxType='skala podatkowa' taxAmount={formatter.format(120.1)}></Result>
-					<Result taxType='podatek linowy' taxAmount={formatter.format(120.1)}></Result>
-					<Result taxType='ryczałt' taxAmount={formatter.format(120.1)}></Result>
+					<Result taxType='skala podatkowa' taxAmount={formatter.format(taxNormal)}></Result>
+					<Result taxType='podatek linowy' taxAmount={formatter.format(taxLinear)}></Result>
+					<Result taxType='ryczałt' taxAmount={formatter.format(taxLump)}></Result>
 				</div>
 			</Box>
 		)
