@@ -1,0 +1,161 @@
+@use 'colors' as *;
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	font-size: 62.5%;
+	scroll-behavior: smooth;
+}
+
+body {
+	font-family: 'Space Mono', monospace;
+	font-size: 1rem;
+}
+
+#root {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	// justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	background-color: $white;
+}
+
+.header {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+
+	&__title {
+		font-size: 3rem;
+		text-transform: uppercase;
+		padding: 2rem;
+	}
+
+	&__picture {
+		width: 400px;
+	}
+}
+
+.box {
+	width: 700px;
+	height: 250px;
+	background-color: $dark-blue-grey;
+	border-radius: 8px;
+	box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 0.5);
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	flex-direction: column;
+
+	&__wrapper {
+		display: flex;
+		width: 100%;
+		justify-content: space-around;
+		height: 100px;
+
+		&--results {
+			width: 80%;
+			height: 80%;
+			background-color: $dark-white;
+			border-radius: 8px;
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+			flex-direction: column;
+		}
+	}
+}
+
+.input {
+	&__wrapper {
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+	}
+
+	&__label {
+		font-size: 2rem;
+		color: $white;
+		padding-bottom: 1rem;
+		// text-transform: uppercase;
+	}
+
+	&__box {
+		border: 1px solid $white;
+		background-color: transparent;
+		color: $white;
+		border-radius: 4px;
+		height: 30px;
+		width: 170px;
+		font-family: inherit;
+		padding: 1.5rem;
+		font-size: 1.5rem;
+	}
+}
+
+.btn {
+	width: 300px;
+	height: 50px;
+	border-radius: 8px;
+	border: none;
+	font-family: inherit;
+	cursor: pointer;
+	border: 1px solid $white;
+	background-color: transparent;
+	transition: background-color 0.4s;
+	font-size: 2rem;
+	color: $white;
+
+	&__green {
+		background-color: $dark-green;
+
+		&:hover {
+			background-color: $dark-green-hoover;
+		}
+	}
+
+	&__red {
+		background-color: $red;
+
+		&:hover {
+			background-color: $red-hoover;
+		}
+	}
+}
+
+.result {
+	&__div {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 2rem;
+		font-size: 2rem;
+		color: $dark-blue-grey;
+	}
+}
+
+.invalid {
+	color: $red;
+}
+
+.radius-bottom {
+	border-radius: 0;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+}
+
+.radius-top {
+	border-radius: 0;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+}
